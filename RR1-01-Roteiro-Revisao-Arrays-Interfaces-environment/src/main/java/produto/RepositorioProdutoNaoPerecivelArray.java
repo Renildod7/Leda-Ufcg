@@ -41,8 +41,17 @@ public class RepositorioProdutoNaoPerecivelArray {
 	 * @return
 	 */
 	private int procurarIndice(int codigo) {
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return procuraIndice(codigo, 0);
+	}
+	
+	private int procuraIndice(int codigo, int indice) {
+		if(indice > this.index) {
+			return -1;		
+		}else if(this.produtos[indice].getCodigo() == codigo) {
+			return indice;
+		}else {
+			return procuraIndice(codigo, indice + 1);
+		}
 	}
 
 	/**
@@ -52,16 +61,25 @@ public class RepositorioProdutoNaoPerecivelArray {
 	 * @return
 	 */
 	public boolean existe(int codigo) {
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return existe(codigo, 0);
+	}
+	
+	public boolean existe(int codigo, int indice) {
+		if(indice > this.index) {
+			return false;
+		}else if(this.produtos[indice].getCodigo() == codigo) {
+			return true;
+		}else {
+			return existe(codigo, indice + 1);
+		}
 	}
 
 	/**
 	 * Insere um novo produto (sem se preocupar com duplicatas)
 	 */
 	public void inserir(ProdutoNaoPerecivel produto) {
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		this.produtos[this.index + 1] = produto;
+		this.index++;
 	}
 
 	/**
@@ -70,8 +88,11 @@ public class RepositorioProdutoNaoPerecivelArray {
 	 * utilizado.
 	 */
 	public void atualizar(ProdutoNaoPerecivel produto) {
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int codigoProduto = produto.getCodigo();
+		if(existe(codigoProduto)) {
+			int indiceProduto = procurarIndice(codigoProduto);
+			this.produtos[indiceProduto] = produto;
+		}
 	}
 
 	/**
@@ -82,8 +103,20 @@ public class RepositorioProdutoNaoPerecivelArray {
 	 * @param codigo
 	 */
 	public void remover(int codigo) {
-		// TODO Implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		int indice = procurarIndice(codigo);
+		if(indice != -1) {
+			removerIndice(indice);
+			this.index--;
+		}
+	}
+	
+	private void removerIndice(int indice) {
+		if(indice == this.index) {
+			this.produtos[indice] = null;
+		}else {
+			this.produtos[indice] = this.produtos[indice + 1];
+			removerIndice(indice + 1);
+		}
 	}
 
 	/**
