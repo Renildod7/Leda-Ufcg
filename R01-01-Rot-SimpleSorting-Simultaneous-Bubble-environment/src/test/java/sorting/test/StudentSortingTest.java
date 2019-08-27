@@ -77,16 +77,111 @@ public class StudentSortingTest {
 		Arrays.sort(copy1);
 		Assert.assertArrayEquals(copy1, array);
 	}
+	
+	public void genericTestBubble(Integer[] array) {
+		AbstractSorting<Integer> implementation = new BubbleSort<Integer>();
+		
+		Integer[] copy1 = {};
+		if(array.length > 0){
+			copy1 = Arrays.copyOf(array, array.length);			
+		}
+		implementation.sort(array);
+		Arrays.sort(copy1);
+		Assert.assertArrayEquals(copy1, array);
+	}
+	
+	public void genericTestInsert(Integer[] array) {
+		AbstractSorting<Integer> implementation = new InsertionSort<Integer>();
+		
+		Integer[] copy1 = {};
+		if(array.length > 0){
+			copy1 = Arrays.copyOf(array, array.length);			
+		}
+		implementation.sort(array);
+		Arrays.sort(copy1);
+		Assert.assertArrayEquals(copy1, array);
+	}
+	
+	public void genericTestSelect(Integer[] array) {
+		AbstractSorting<Integer> implementation = new SelectionSort<Integer>();
+		
+		Integer[] copy1 = {};
+		if(array.length > 0){
+			copy1 = Arrays.copyOf(array, array.length);			
+		}
+		implementation.sort(array);
+		Arrays.sort(copy1);
+		Assert.assertArrayEquals(copy1, array);
+	}
+	
+	public void genericTestBubbleSimult(Integer[] array) {
+		AbstractSorting<Integer> implementation = new SimultaneousBubblesort<Integer>();
+		
+		Integer[] copy1 = {};
+		if(array.length > 0){
+			copy1 = Arrays.copyOf(array, array.length);			
+		}
+		implementation.sort(array);
+		Arrays.sort(copy1);
+		Assert.assertArrayEquals(copy1, array);
+	}
 
 	@Test
 	public void testSort01() {
 		genericTest(vetorTamPar);
 	}
+	
+	@Test
+	public void testSort01Blubble() {
+		genericTestBubble(vetorTamPar);
+	}
+	
+	@Test
+	public void testSort01Inset() {
+		genericTestInsert(vetorTamPar);
+	}
+	
+	@Test
+	public void testSort01Select() {
+		genericTestSelect(vetorTamPar);
+	}
+	
+	@Test
+	public void testSort01BlubbleSumult() {
+		genericTestBubbleSimult(vetorTamPar);
+	}
 
+	
+	
+	
 	@Test
 	public void testSort02() {
 		genericTest(vetorTamImpar);
 	}
+
+	@Test
+	public void testSort02Blubble() {
+		genericTestBubble(vetorTamImpar);
+	}
+	
+	@Test
+	public void testSort02Inset() {
+		genericTestInsert(vetorTamImpar);
+	}
+	
+	@Test
+	public void testSort02Select() {
+		genericTestSelect(vetorTamImpar);
+	}
+	
+	@Test
+	public void testSort02BlubbleSumult() {
+		genericTestBubbleSimult(vetorTamImpar);
+	}
+	
+	
+	
+	
 
 	@Test
 	public void testSort03() {
@@ -94,14 +189,81 @@ public class StudentSortingTest {
 	}
 
 	@Test
+	public void testSort03Blubble() {
+		genericTestBubble(vetorVazio);
+	}
+	
+	@Test
+	public void testSort03Inset() {
+		genericTestInsert(vetorVazio);
+	}
+	
+	@Test
+	public void testSort03Select() {
+		genericTestSelect(vetorVazio);
+	}
+	
+	@Test
+	public void testSort03BlubbleSumult() {
+		genericTestBubbleSimult(vetorVazio);
+	}
+	
+	
+
+	@Test
 	public void testSort04() {
 		genericTest(vetorValoresIguais);
 	}
+	
+	@Test
+	public void testSort04Blubble() {
+		genericTestBubble(vetorValoresIguais);
+	}
+	
+	@Test
+	public void testSort04Inset() {
+		genericTestInsert(vetorValoresIguais);
+	}
+	
+	@Test
+	public void testSort04Select() {
+		genericTestSelect(vetorValoresIguais);
+	}
+	
+	@Test
+	public void testSort04BlubbleSumult() {
+		genericTestBubbleSimult(vetorValoresIguais);
+	}
+	
+	
 
 	@Test
 	public void testSort05() {
 		genericTest(vetorValoresRepetidos);
 	}
+	
+	@Test
+	public void testSort05Blubble() {
+		genericTestBubble(vetorValoresRepetidos);
+	}
+	
+	@Test
+	public void testSort05Inset() {
+		genericTestInsert(vetorValoresRepetidos);
+	}
+	
+	@Test
+	public void testSort05Select() {
+		genericTestSelect(vetorValoresRepetidos);
+	}
+	
+	@Test
+	public void testSort05BlubbleSumult() {
+		genericTestBubbleSimult(vetorValoresRepetidos);
+	}
+	
+	
+	
 
 	// MÉTODOS QUE OS ALUNOS PODEM CRIAR
 	/**
