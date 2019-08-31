@@ -47,6 +47,12 @@ public class ThreeWayQuickSort<T extends Comparable<T>> extends
         		}
         	}
         	
+        	/**
+        	 * Ao terminar o loop, o indice referente a variavel menor comrresponde ao indice da primeira
+        	 * ocorrencia do pivot, e a varicavel maior corresponde a ultima ocorrencia do pivot, todos os
+        	 * elementos cujo indices estao entre menor e maior sao iguais ao pivot.
+        	 */
+        	
         	sort(array, leftIndex, menor-1);
         	sort(array, maior+1, rightIndex);
         	
