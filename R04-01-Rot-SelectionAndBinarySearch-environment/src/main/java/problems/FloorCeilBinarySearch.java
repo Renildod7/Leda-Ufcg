@@ -1,6 +1,5 @@
 package problems;
 
-
 /**
  * Calcula o floor e ceil de um numero em um array usando a estrategia de busca
  * binaria.
@@ -92,8 +91,63 @@ public class FloorCeilBinarySearch implements FloorCeil {
 	}
 
 	private Integer ceil(Integer[] array, Integer x, int leftIndex, int rightIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(leftIndex == rightIndex){
+			
+			if(array[leftIndex] > x) {
+				return array[leftIndex];
+			
+			}else {
+				return null;
+			}
+			
+		}
+		
+		if(leftIndex < rightIndex && leftIndex >= 0 && rightIndex < array.length) {
+			
+			int meio = (leftIndex + rightIndex) / 2;
+			
+			if(array[meio] == x) {
+				return array[meio+1];
+				
+			}else if(array[meio] > x) {
+				return ceil(array, x, leftIndex, meio-1, array[meio]);
+				
+			}else {
+				return ceil(array, x, meio+1, rightIndex);
+			}
+			
+		}else {
+			return null;
+		}
+		
+	}
+
+	private Integer ceil(Integer[] array, Integer x, int leftIndex, int rightIndex, int maiorAtual) {
+		
+		if(leftIndex == rightIndex) {
+			
+			if(array[leftIndex] > x) {
+				return array[leftIndex];
+			
+			}else {
+				return maiorAtual;
+			}
+		}
+		
+		int meio = (leftIndex + rightIndex) / 2;
+		
+		if(array[meio] == x) {
+			return array[meio+1];
+			
+		}else if(array[meio] > x) {
+			return floor(array, x, leftIndex, meio-1, array[meio]);
+		
+		}else {
+			return floor(array, x, meio+1, rightIndex, maiorAtual);
+		}
+		
+		
 	}
 
 }
