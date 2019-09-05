@@ -1,5 +1,6 @@
 package problems;
 
+
 /**
  * Calcula o floor e ceil de um numero em um array usando a estrategia de busca
  * binaria.
@@ -20,7 +21,18 @@ public class FloorCeilBinarySearch implements FloorCeil {
 
 	private Integer floor(Integer[] array, Integer x, int leftIndex, int rightIndex) {
 		
-		if(leftIndex < rightIndex) {
+		if(leftIndex == rightIndex){
+			
+			if(array[leftIndex] < x) {
+				return array[leftIndex];
+			
+			}else {
+				return null;
+			}
+			
+		}
+		
+		if(leftIndex < rightIndex && leftIndex >= 0 && rightIndex < array.length) {
 			
 			int meio = (leftIndex + rightIndex) / 2;
 			
@@ -33,10 +45,11 @@ public class FloorCeilBinarySearch implements FloorCeil {
 			}else {
 				return floor(array, x, leftIndex, meio -1);
 			}
-		
-		} else {
+			
+		}else {
 			return null;
 		}
+		
 		
 	}
 
@@ -52,8 +65,6 @@ public class FloorCeilBinarySearch implements FloorCeil {
 				return menorAtual;
 			}
 		}
-		
-		
 		
 			
 		int meio = (leftIndex + rightIndex) / 2;
@@ -77,8 +88,12 @@ public class FloorCeilBinarySearch implements FloorCeil {
 
 	@Override
 	public Integer ceil(Integer[] array, Integer x) {
-		// TODO implement your code here
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return ceil(array, x, 0, array.length-1);
+	}
+
+	private Integer ceil(Integer[] array, Integer x, int leftIndex, int rightIndex) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
