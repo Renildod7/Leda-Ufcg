@@ -1,5 +1,6 @@
 package problems;
 
+
 /**
  * Calcula o floor e ceil de um numero em um array usando a estrategia de busca
  * binaria.
@@ -25,6 +26,8 @@ public class FloorCeilBinarySearch implements FloorCeil {
 			if(array[leftIndex] < x) {
 				return array[leftIndex];
 			
+			}else if(array[leftIndex] == x){
+				return array[leftIndex];
 			}else {
 				return null;
 			}
@@ -36,7 +39,7 @@ public class FloorCeilBinarySearch implements FloorCeil {
 			int meio = (leftIndex + rightIndex) / 2;
 			
 			if(array[meio] == x) {
-				return array[meio-1];
+				return array[meio];
 				
 			}else if(array[meio] < x) {
 				return floor(array, x, meio + 1, rightIndex, array[meio]);
@@ -60,6 +63,8 @@ public class FloorCeilBinarySearch implements FloorCeil {
 			if(array[leftIndex] < x) {
 				return array[leftIndex];
 			
+			}else if(array[leftIndex] == x){
+				return array[leftIndex];
 			}else {
 				return menorAtual;
 			}
@@ -69,7 +74,7 @@ public class FloorCeilBinarySearch implements FloorCeil {
 		int meio = (leftIndex + rightIndex) / 2;
 		
 		if(array[meio] == x) {
-			return array[meio-1];
+			return array[meio];
 			
 		}else if(array[meio] < x) {
 			return floor(array, x, meio + 1, rightIndex, array[meio]);
@@ -97,6 +102,8 @@ public class FloorCeilBinarySearch implements FloorCeil {
 			if(array[leftIndex] > x) {
 				return array[leftIndex];
 			
+			}else if(array[leftIndex] == x){
+				return array[leftIndex];
 			}else {
 				return null;
 			}
@@ -108,7 +115,7 @@ public class FloorCeilBinarySearch implements FloorCeil {
 			int meio = (leftIndex + rightIndex) / 2;
 			
 			if(array[meio] == x) {
-				return array[meio+1];
+				return array[meio];
 				
 			}else if(array[meio] > x) {
 				return ceil(array, x, leftIndex, meio-1, array[meio]);
@@ -130,6 +137,8 @@ public class FloorCeilBinarySearch implements FloorCeil {
 			if(array[leftIndex] > x) {
 				return array[leftIndex];
 			
+			}else if(array[leftIndex] == x){
+				return array[leftIndex];
 			}else {
 				return maiorAtual;
 			}
@@ -138,13 +147,13 @@ public class FloorCeilBinarySearch implements FloorCeil {
 		int meio = (leftIndex + rightIndex) / 2;
 		
 		if(array[meio] == x) {
-			return array[meio+1];
+			return array[meio];
 			
 		}else if(array[meio] > x) {
-			return floor(array, x, leftIndex, meio-1, array[meio]);
+			return ceil(array, x, leftIndex, meio-1, array[meio]);
 		
 		}else {
-			return floor(array, x, meio+1, rightIndex, maiorAtual);
+			return ceil(array, x, meio+1, rightIndex, maiorAtual);
 		}
 		
 		
