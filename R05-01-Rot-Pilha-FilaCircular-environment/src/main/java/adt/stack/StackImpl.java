@@ -7,14 +7,14 @@ public class StackImpl<T> implements Stack<T> {
 
 	@SuppressWarnings("unchecked")
 	public StackImpl(int size) {
-		array = (T[]) new Object[size];
-		top = -1;
+		this.array = (T[]) new Object[size];
+		this.top = -1;
 	}
 
 	@Override
 	public T top() {
 		if(!isEmpty()) {
-			return this.array[top];
+			return this.array[this.top];
 		}else {
 			return null;
 		}
@@ -35,7 +35,7 @@ public class StackImpl<T> implements Stack<T> {
 		if(isFull()) {
 			throw new StackOverflowException();
 		}else {
-			array[++top] = element;
+			this.array[++this.top] = element;
 		}
 	}
 
@@ -44,7 +44,7 @@ public class StackImpl<T> implements Stack<T> {
 		if(isEmpty()) {
 			throw new StackUnderflowException();
 		}else {
-			return array[top--];
+			return this.array[this.top--];
 		}
 	}
 
