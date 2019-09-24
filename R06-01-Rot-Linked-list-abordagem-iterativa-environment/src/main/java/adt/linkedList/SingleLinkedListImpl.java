@@ -18,10 +18,8 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 		SingleLinkedListNode<T> aux = this.head;
 		int size = 0;
 		
-		while(aux != null) {
-			if(!aux.isNIL()) {
-				size++;
-			}
+		while(!aux.isNIL()) {
+			size++;
 			aux = aux.getNext();
 		}
 		return size;
@@ -29,11 +27,12 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public T search(T element) {
-		SingleLinkedListNode<T> aux = this.head;
 		T retorno = null;
 		boolean encontrou = false;
 		
-		while(aux != null && !encontrou) {
+		SingleLinkedListNode<T> aux = this.head;
+		
+		while(!aux.isNIL() && !encontrou) {
 			T auxData = aux.getData();
 			if(element.equals(auxData)) {
 				retorno = auxData;
@@ -47,34 +46,37 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 
 	@Override
 	public void insert(T element) {
-		SingleLinkedListNode<T> newNode = new SingleLinkedListNode<T>(element, new SingleLinkedListNode<>());
 		
 		if(isEmpty()) {
-			this.head = newNode;
+			this.head.setData(element);
+			this.head.setNext(new SingleLinkedListNode<T>());
 		} else {
 			
 			SingleLinkedListNode<T> aux = this.head;
 			
-			while(aux.getNext() != null) {
+			while(!aux.isNIL()) {
 				aux = aux.getNext();
 			}
-			aux.next = newNode;
+			aux.setData(element);
+			aux.setNext(new SingleLinkedListNode<T>());
 		}
 		
 	}
 
 	@Override
 	public void remove(T element) {
-		boolean encontrou = false;
 		if(!isEmpty()) {
 			if(this.head.getData().equals(element)) {
 				this.head = head.getNext();
 				
 			}
-			SingleLinkedListNode<T> anterior = new SingleLinkedListNode<>();
-			SingleLinkedListNode<T> atual = this.head;
+		
+			SingleLinkedListNode<T> anterior = this.head;
+			SingleLinkedListNode<T> atual = this.head.getNext();
 			
-			while(atual != null && !encontrou) {
+	
+			boolean encontrou = false;
+			while(!atual.isNIL() && !encontrou) {
 				if(!atual.getData().equals(element)) {
 					anterior = atual;
 					atual = atual.getNext();
@@ -82,7 +84,9 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 					encontrou  = true;
 				}	
 			}
-			anterior.setNext(atual.getNext());
+			if(encontrou) {
+				anterior.setNext(atual.getNext());				
+			}
 			
 		}
 	}
