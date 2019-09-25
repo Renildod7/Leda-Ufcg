@@ -97,11 +97,11 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 		T[] retorno = (T[]) new Comparable[this.size()];
 		int cont = 0;
 		SingleLinkedListNode<T> aux = this.head;
-		while(aux != null) {
-			if(!aux.isNIL()) {
-				retorno[cont] = aux.getData();				
-				cont++;				
-			}
+		while(!aux.isNIL()) {
+
+			retorno[cont] = aux.getData();				
+			cont++;				
+
 			aux = aux.getNext();
 		}
 		
