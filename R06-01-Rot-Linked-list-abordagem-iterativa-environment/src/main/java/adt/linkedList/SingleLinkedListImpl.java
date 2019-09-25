@@ -38,6 +38,7 @@ public class SingleLinkedListImpl<T> implements LinkedList<T> {
 				retorno = auxData;
 				encontrou = true;
 			}
+			aux = aux.getNext();
 			
 		}
 		
