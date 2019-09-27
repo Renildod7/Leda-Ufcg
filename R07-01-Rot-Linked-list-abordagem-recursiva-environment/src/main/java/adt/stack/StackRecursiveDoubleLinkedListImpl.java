@@ -37,7 +37,7 @@ public class StackRecursiveDoubleLinkedListImpl<T> implements Stack<T> {
 
 	@Override
 	public T top() {
-		return ((RecursiveSingleLinkedListImpl<T>) this.top()).getData();
+		return ((RecursiveSingleLinkedListImpl<T>) this.top).getData();
 	}
 
 	@Override
