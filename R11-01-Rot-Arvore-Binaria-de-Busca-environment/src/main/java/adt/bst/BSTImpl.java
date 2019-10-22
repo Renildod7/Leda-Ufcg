@@ -1,5 +1,7 @@
 package adt.bst;
 
+import adt.bt.BTNode;
+
 public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	protected BSTNode<T> root;
@@ -19,44 +21,113 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
 	@Override
 	public int height() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		return heigth(this.root);
+	}
+
+	private int heigth(BSTNode<T> node) {
+		if(node.isEmpty()) return -1;
+		return 1 + Math.max(heigth((BSTNode<T>) node.getLeft()), heigth((BSTNode<T>) node.getRight()));
 	}
 
 	@Override
 	public BSTNode<T> search(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		BSTNode<T> retorno = (BSTNode<T>) new BSTNode();
+		
+		if(element != null) {
+			BSTNode<T> aux = this.root;
+			boolean encontrou = false;
+			
+			while(!aux.isEmpty() && !encontrou) {
+				if(aux.getData().equals(element)) {
+					retorno = aux;
+					encontrou = true;
+				} else {
+					if(element.compareTo(aux.getData()) < 0) {
+						aux = (BSTNode<T>) aux.getLeft();
+					} else {
+						aux = (BSTNode<T>) aux.getLeft();
+					}
+				}
+			}
+		}
+		
+		return retorno;
 	}
 
 	@Override
 	public void insert(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		insert(element, this.root);
+	}
+
+	private void insert(T element, BSTNode<T> node) {
+		
+		if(node.isEmpty()) {
+			node.setData(element);
+			node.setLeft(new BSTNode<T>());
+			node.getLeft().setParent(node);
+			node.setRight(new BSTNode<T>());
+			node.getRight().setParent(node);
+		
+		} else {
+			
+			if(element.compareTo(node.getData()) < 0) {
+				insert(element, (BSTNode<T>)node.getLeft());
+			} else {
+				insert(element, (BSTNode<T>)node.getRight());
+			}
+		}
 	}
 
 	@Override
 	public BSTNode<T> maximum() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(this.root.isEmpty()) {
+			return null;
+		} else {
+			return maximum(this.root);
+		}
+	}
+
+	private BSTNode<T> maximum(BSTNode<T> node) {
+		if(node.getRight().isEmpty()) {
+			return (BSTNode<T>)node;
+		} else {
+			return maximum((BSTNode<T>)node.getRight());
+		}
 	}
 
 	@Override
 	public BSTNode<T> minimum() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(this.root.isEmpty()) {
+			return null;
+		} else {
+			return minimum(this.root);
+		}
+	}
+
+	private BSTNode<T> minimum(BSTNode<T> node) {
+		if(node.getLeft().isEmpty()) {
+			return (BSTNode<T>)node;
+		} else {
+			return minimum((BSTNode<T>)node.getLeft());
+		}
 	}
 
 	@Override
 	public BSTNode<T> sucessor(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(element.equals(this.maximum().getData())) {
+			return null;
+		} else {
+			return minimum((BSTNode<T>) search(element).getRight());
+		}
 	}
 
 	@Override
 	public BSTNode<T> predecessor(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Not implemented yet!");
+		if(element.equals(this.minimum().getData())) {
+			return null;
+		} else {
+			return(maximum((BSTNode<T>) search(element).getLeft()));
+		}
 	}
 
 	@Override
