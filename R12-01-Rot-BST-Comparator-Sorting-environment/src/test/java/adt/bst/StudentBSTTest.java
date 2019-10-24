@@ -6,11 +6,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import adt.bst.BSTImpl;
+import adt.bst.extended.SortComparatorBSTImpl;
 import adt.bt.BTNode;
 
 public class StudentBSTTest {
 
-	private BSTImpl<Integer> tree;
+	private BST<Integer> tree;
 	private BTNode<Integer> NIL = new BTNode<Integer>();
 
 	private void fillTree() {
@@ -22,7 +23,7 @@ public class StudentBSTTest {
 
 	@Before
 	public void setUp() {
-		tree = new BSTImpl<>();
+		tree = new SortComparatorBSTImpl<>((o1, o2) -> o1 - o2);
 	}
 
 	@Test
@@ -151,5 +152,14 @@ public class StudentBSTTest {
 		assertEquals(new Integer(-40), tree.search(-40).getData());
 		assertEquals(new Integer(-34), tree.search(-34).getData());
 		assertEquals(NIL, tree.search(2534));
+	}
+	
+	@Test
+	public void testSort() {
+		Integer[] asd = new Integer[] {8,9,7,4,5,2,1,6,3};
+		Integer[] asdw = new Integer[] {1,2,3,4,5,6,7,8,9};
+		Integer[] asdwq = new Integer[] {9,8,7,6,5,4,3,2,1};
+		assertArrayEquals(asdw, ((SortComparatorBSTImpl<Integer>)tree).sort(asd));
+		assertArrayEquals(asdwq, ((SortComparatorBSTImpl<Integer>)tree).reverseOrder());
 	}
 }
