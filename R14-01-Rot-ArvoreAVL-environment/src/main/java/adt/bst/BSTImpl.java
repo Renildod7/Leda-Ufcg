@@ -237,7 +237,7 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 
    }
 
-   private int grau(BSTNode<T> node) {
+   protected int grau(BSTNode<T> node) {
       int grau = -1;
       if (node == null || node.isEmpty()) {
          grau = -1;
